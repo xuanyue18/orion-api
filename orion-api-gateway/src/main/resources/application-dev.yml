@@ -1,0 +1,22 @@
+# 开发环境
+
+orion:
+  #  todo Redis 配置
+  redis:
+    host: localhost
+    port: 6379
+    database: 1
+  # todo Dubbo 配置
+  dubbo:
+    application:
+      name: orion-api-backend-consumer
+    protocol:
+      name: dubbo
+      port: -1
+    registry:
+      id: nacos-registry
+      address: nacos://localhost:8848
+
+
+
+

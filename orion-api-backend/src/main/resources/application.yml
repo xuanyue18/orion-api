@@ -1,0 +1,102 @@
+# 公共配置文件
+
+server:
+  address: 0.0.0.0
+  port: 8101
+  servlet:
+    context-path: /api
+    # cookie 30 天过期
+    session:
+      cookie:
+        max-age: 2592000
+spring:
+  application:
+    name: orion-api
+  profiles:
+    active: dev
+  # session 配置
+  session:
+    store-type: redis
+    # 30 天过期
+    timeout: 2592000
+  # 支持 swagger3
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  # Redis 配置
+  redis:
+    database: ${orion.redis.database}
+    host: ${orion.redis.host}
+    port: ${orion.redis.port}
+    timeout: ${orion.redis.timeout}
+    password: ${orion.redis.password}
+  # 数据库配置
+  datasource:
+    driver-class-name: ${orion.datasource.driver-class-name}
+    url: ${orion.datasource.url}
+    username: ${orion.datasource.username}
+    password: ${orion.datasource.password}
+  # 文件上传
+  servlet:
+    multipart:
+      # 大小限制
+      max-file-size: ${orion.servlet.multipart.max-file-size}
+
+# mybatis-plus配置
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: false
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      logic-delete-field: isDelete # 全局逻辑删除的实体字段名
+      logic-delete-value: 1 # 逻辑已删除值（默认为 1）
+      logic-not-delete-value: 0 # 逻辑未删除值（默认为 0）
+# Dubbo配置
+dubbo:
+  application:
+    name: ${orion.dubbo.application.name}
+  protocol:
+    name: ${orion.dubbo.protocol.name}
+    port: ${orion.dubbo.protocol.port}
+  registry:
+    id: ${orion.dubbo.registry.id}
+    address: ${orion.dubbo.registry.address}
+# 项目网关
+orion:
+  gateway:
+    host: ${orion.gateway.host}
+# 对象存储
+aliyun:
+  oss:
+    endpoint: ${orion.aliyun.oss.endpoint}
+    urlPrefix: ${orion.aliyun.oss.urlPrefix}
+    accessKeyId: ${orion.aliyun.oss.accessKeyId}
+    accessKeySecret: ${orion.aliyun.oss.accessKeySecret}
+    bucketName: ${orion.aliyun.oss.bucketName}
+    fileHost: ${orion.aliyun.oss.fileHost}
+cos:
+  client:
+    accessKey: xxx
+    secretKey: xxx
+    region: xxx
+    bucket: xxx
+# 微信相关
+wx:
+  # todo 微信公众平台
+  mp:
+    token: xxx
+    aesKey: xxx
+    appId: xxx
+    secret: xxx
+    config-storage:
+      http-client-type: HttpClient
+      key-prefix: wx
+      redis:
+        host: 127.0.0.1
+        port: 6379
+      type: Memory
+  # todo 微信开放平台
+  open:
+    appId: xxx
+    appSecret: xxx

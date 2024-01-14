@@ -1,0 +1,48 @@
+# 开发环境
+
+orion:
+  # todo Redis配置
+  redis:
+    database: 1
+    host: localhost
+    port: 6379
+    timeout: 5000
+  # todo 数据库配置
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/orion_api
+    username: root
+    password: 123456
+  # todo 网关配置
+  gateway:
+    host: http://localhost:8102
+  # 文件上传
+  servlet:
+    multipart:
+      # 大小限制
+      max-file-size: 10MB
+  # todo 阿里云OSS配置
+  aliyun:
+    oss:
+      endpoint: oss-cn-guangzhou.aliyuncs.com
+      urlPrefix: http://orion-api-project.oss-cn-hangzhou.aliyuncs.com
+      accessKeyId: LTAI5t6uC9TBjYWPMm4qX4x4
+      accessKeySecret: eG8ErGVlPKSbL4A5laffV6nrbyCMsQ
+      bucketName: orion-api
+      fileHost: files
+  # todo Dubbo配置
+  dubbo:
+    application:
+      name: orion-api-backend-provider
+    protocol:
+      name: dubbo
+      port: -1
+    registry:
+      id: nacos-registry
+      address: nacos://localhost:8848
+  # Elasticsearch 配置
+  # todo 需替换配置，然后取消注释
+  #  elasticsearch:
+  #    uris: http://localhost:9200
+  #    username: root
+  #    password: 123456

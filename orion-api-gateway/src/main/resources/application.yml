@@ -1,0 +1,37 @@
+server:
+  port: 8102
+
+spring:
+  application:
+    name: orion-api-gateway
+  # todo 切换配置文件
+  profiles:
+    active: dev
+  cloud:
+    gateway:
+      routes:
+        - id: path_route
+          uri: http://localhost:8103
+          predicates:
+            - Path=/**
+  redis:
+    host: localhost
+    port: 6379
+    database: 1
+
+logging:
+  level:
+    org:
+      springframework:
+        cloud:
+          gateway: trace
+dubbo:
+  application:
+    name: orion-api-backend-consumer
+  protocol:
+    name: dubbo
+    port: -1
+  registry:
+    id: nacos-registry
+    address: nacos://localhost:8848
+
