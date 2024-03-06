@@ -1,3 +1,11 @@
 server:
   port: 8103
-
+spring:
+  application:
+    name: orion-api-interface
+  # todo 切换配置文件
+  profiles:
+    active: dev
+gpt:
+  base-url: ${orion.gpt.base-url}
+  access-token: ${orion.gpt.access-token}

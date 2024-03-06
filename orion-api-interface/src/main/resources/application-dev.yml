@@ -1,0 +1,7 @@
+# 生产环境
+
+orion:
+  gpt:
+    base-url: xxx
+    access-token: xxx
+
