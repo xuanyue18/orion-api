@@ -6,7 +6,7 @@ spring:
     name: orion-api-gateway
   # todo 切换配置文件
   profiles:
-    active: dev
+    active: prod
   cloud:
     gateway:
       routes:
@@ -15,10 +15,10 @@ spring:
           predicates:
             - Path=/**
   redis:
-    host: localhost
-    port: 6379
-    database: 1
-
+    host: ${orion.redis.host}
+    port: ${orion.redis.port}
+    database: ${orion.redis.database}
+#    password: ${orion.redis.password}
 logging:
   level:
     org:
@@ -27,11 +27,11 @@ logging:
           gateway: trace
 dubbo:
   application:
-    name: orion-api-backend-consumer
+    name: ${orion.dubbo.application.name}
   protocol:
-    name: dubbo
-    port: -1
+    name: ${orion.dubbo.protocol.name}
+    port: ${orion.dubbo.protocol.port}
   registry:
-    id: nacos-registry
-    address: nacos://localhost:8848
+    id: ${orion.dubbo.registry.id}
+    address: ${orion.dubbo.registry.address}
 
